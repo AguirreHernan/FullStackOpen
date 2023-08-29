@@ -1,2 +1,35 @@
 sequenceDiagram:
-    
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    activate server
+    server->>browser: URL redirect
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
+    activate server
+    server-->>browser: returns HTML document
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.css
+    activate server
+    server-->>browser: returns css file
+    deactivate server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/main.js
+    activate server
+    server-->>browser: returns javascript file
+    deactivate server
+
+    Note: the browser executes javascript code to fetch the JSON
+    data from the server
+
+    browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/data.json
+    activate server
+    server->>browser: [{"content": "post", "date": "2023-08-29T20:48:28.910Z"}, ...]
+    deactivate server
+
+
+    Note: the browser call the callback function that renders the notes
+

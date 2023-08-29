@@ -1,0 +1,10 @@
+sequenceDiagram:
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+    activate server
+    server->>browser: returns the new_note_spa that contains the JSON data
+    deactivate server
+
+    Note: the browser executes the javascript code that renders the notes
